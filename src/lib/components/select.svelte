@@ -9,7 +9,7 @@
 </script>
 
 <div class="flex flex-col gap-1.5">
-	<label for="select-{label}" class="text-sm font-medium text-gray-700">{label}</label>
+	<label for="select-{label}" class="text-xs font-medium text-gray-700">{label}</label>
 	<select
 		id="select-{label}"
 		bind:value
