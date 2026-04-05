@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Select from '$lib/components/select.svelte';
-	import NumberInput from '$lib/components/number-input.svelte';
-	import Button from '$lib/components/button.svelte';
+	import { Select } from '$lib/components/select';
+	import { NumberInput } from '$lib/components/number-input';
+	import { Button } from '$lib/components/button';
 	import { berechneNote, type GradingResult, type Untergrund } from '$lib/grading';
 
 	let untergrund: Untergrund = $state('kunststoff');
