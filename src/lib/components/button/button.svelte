@@ -22,7 +22,7 @@
 <style>
 	.button {
 		cursor: pointer;
-		border-radius: 0.375rem;
+		border-radius: var(--radius-md);
 		padding: 0.625rem 1rem;
 		font-size: var(--text-sm);
 		font-weight: 500;

@@ -112,10 +112,6 @@
 	<div class="page-actions">
 		<Button onclick={reset} variant="secondary">Zurücksetzen</Button>
 	</div>
-
-	<footer class="page-footer">
-		Wertungstabelle Leichtathletik 2020 &mdash; STV/FSG
-	</footer>
 </div>
 
 <style>
@@ -160,8 +156,8 @@
 
 	.result-card {
 		margin-top: 2rem;
-		border-radius: 0.75rem;
-		border: 1px solid var(--color-neutral-200);
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-neutral-300);
 		background-color: #ffffff;
 		padding: 1.5rem;
 	}
@@ -217,13 +213,7 @@
 
 	.page-actions {
 		margin-top: 1.5rem;
-	}
-
-	.page-footer {
-		margin-top: auto;
-		padding-top: 2rem;
-		text-align: center;
-		font-size: var(--text-xs);
-		color: var(--color-neutral-400);
+		display: flex;
+		justify-content: flex-end;
 	}
 </style>

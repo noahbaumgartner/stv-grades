@@ -35,7 +35,7 @@
 	}
 
 	.select-input {
-		border-radius: 0.375rem;
+		border-radius: var(--radius-md);
 		border: 1px solid var(--color-neutral-300);
 		background-color: white;
 		padding: 0.625rem 1rem;
