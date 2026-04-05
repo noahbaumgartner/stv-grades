@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Select } from '$lib/components/select';
 	import { Input } from '$lib/components/input';
-	import { Button } from '$lib/components/button';
+
 	import { berechneNote, type GradingResult, type Untergrund } from '$lib/grading';
 
 	let untergrund: Untergrund = $state('kunststoff');
@@ -23,15 +23,7 @@
 		return 'note-red';
 	}
 
-	function reset() {
-		untergrund = 'kunststoff';
-		frauen = 0;
-		maenner = 0;
-		zeitTotal = 0;
-		fehler = 0;
-	}
-
-	const untergrundOptions = [
+const untergrundOptions = [
 		{ value: 'kunststoff', label: 'Kunststoff' },
 		{ value: 'rasen', label: 'Rasen' },
 		{ value: 'wiese', label: 'Wiese' }
@@ -108,10 +100,6 @@
 			</div>
 		</div>
 	{/if}
-
-	<div class="page-actions">
-		<Button onclick={reset} variant="secondary">Zurücksetzen</Button>
-	</div>
 </div>
 
 <style>
@@ -145,7 +133,7 @@
 	.page-form {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
+		gap: 1rem;
 	}
 
 	.page-grid {
@@ -209,11 +197,5 @@
 	.result-value {
 		font-weight: 500;
 		color: var(--color-neutral-900);
-	}
-
-	.page-actions {
-		margin-top: 1.5rem;
-		display: flex;
-		justify-content: flex-end;
 	}
 </style>
