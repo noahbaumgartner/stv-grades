@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Select } from '$lib/components/select';
-	import { NumberInput } from '$lib/components/number-input';
+	import { Input } from '$lib/components/input';
 	import { Button } from '$lib/components/button';
 	import { berechneNote, type GradingResult, type Untergrund } from '$lib/grading';
 
@@ -52,12 +52,13 @@
 		<Select label="Untergrund" options={untergrundOptions} bind:value={untergrund} />
 
 		<div class="page-grid">
-			<NumberInput label="Anzahl Frauen" bind:value={frauen} min={0} placeholder="0" />
-			<NumberInput label="Anzahl Männer" bind:value={maenner} min={0} placeholder="0" />
+			<Input label="Anzahl Frauen" type="number" bind:value={frauen} min={0} placeholder="0" />
+			<Input label="Anzahl Männer" type="number" bind:value={maenner} min={0} placeholder="0" />
 		</div>
 
-		<NumberInput
+		<Input
 			label="Zeittotal"
+			type="number"
 			bind:value={zeitTotal}
 			min={0}
 			step={0.01}
@@ -65,7 +66,7 @@
 			suffix="Sek."
 		/>
 
-		<NumberInput label="Anzahl Fehler" bind:value={fehler} min={0} placeholder="0" />
+		<Input label="Anzahl Fehler" type="number" bind:value={fehler} min={0} placeholder="0" />
 	</div>
 
 	{#if result}
@@ -161,7 +162,7 @@
 		margin-top: 2rem;
 		border-radius: 0.75rem;
 		border: 1px solid var(--color-neutral-200);
-		background-color: var(--color-neutral-50);
+		background-color: #ffffff;
 		padding: 1.5rem;
 	}
 

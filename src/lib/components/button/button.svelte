@@ -21,14 +21,19 @@
 
 <style>
 	.button {
-		height: 2.5rem;
 		cursor: pointer;
-		border-radius: 0.5rem;
-		padding-inline: 1rem;
+		border-radius: 0.375rem;
+		padding: 0.625rem 1rem;
 		font-size: var(--text-sm);
 		font-weight: 500;
 		border: none;
-		transition: background-color 0.15s, transform 0.15s;
+		outline: 0;
+		transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+	}
+
+	.button:focus-visible {
+		border-color: var(--color-neutral-900);
+		box-shadow: 0 0 0 1px var(--color-neutral-900);
 	}
 
 	.button:active {
