@@ -14,10 +14,43 @@
 
 <button
 	{onclick}
-	class="h-10 cursor-pointer rounded-lg px-4 text-sm font-medium transition active:scale-[0.98]
-		{variant === 'primary'
-		? 'bg-gray-900 text-white hover:bg-gray-800'
-		: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50'}"
+	class="button {variant === 'primary' ? 'button-primary' : 'button-secondary'}"
 >
 	{@render children()}
 </button>
+
+<style>
+	.button {
+		height: 2.5rem;
+		cursor: pointer;
+		border-radius: 0.5rem;
+		padding-inline: 1rem;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		border: none;
+		transition: background-color 0.15s, transform 0.15s;
+	}
+
+	.button:active {
+		transform: scale(0.98);
+	}
+
+	.button-primary {
+		background-color: var(--color-neutral-900);
+		color: white;
+	}
+
+	.button-primary:hover {
+		background-color: var(--color-neutral-800);
+	}
+
+	.button-secondary {
+		border: 1px solid var(--color-neutral-300);
+		background-color: white;
+		color: var(--color-neutral-700);
+	}
+
+	.button-secondary:hover {
+		background-color: var(--color-neutral-50);
+	}
+</style>

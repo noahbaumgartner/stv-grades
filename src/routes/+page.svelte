@@ -16,11 +16,11 @@
 		return berechneNote({ untergrund, frauen, maenner, zeitTotal, fehler });
 	});
 
-	function noteColor(note: number): string {
-		if (note >= 8) return 'text-green-600';
-		if (note >= 6) return 'text-yellow-600';
-		if (note >= 4) return 'text-orange-500';
-		return 'text-red-500';
+	function noteColorClass(note: number): string {
+		if (note >= 8) return 'note-green';
+		if (note >= 6) return 'note-yellow';
+		if (note >= 4) return 'note-orange';
+		return 'note-red';
 	}
 
 	function reset() {
@@ -42,16 +42,16 @@
 	<title>STV Pendelstafetten-Rechner</title>
 </svelte:head>
 
-<div class="mx-auto flex min-h-dvh max-w-lg flex-col px-4 py-8">
-	<header class="mb-8 text-center">
-		<h1 class="text-2xl font-bold text-gray-900">Pendelstafetten-Rechner</h1>
-		<p class="mt-1 text-sm text-gray-500">80m Pendelstafette</p>
+<div class="page">
+	<header class="page-header">
+		<h1 class="page-title">Pendelstafetten-Rechner</h1>
+		<p class="page-subtitle">80m Pendelstafette</p>
 	</header>
 
-	<div class="flex flex-col gap-5">
+	<div class="page-form">
 		<Select label="Untergrund" options={untergrundOptions} bind:value={untergrund} />
 
-		<div class="grid grid-cols-2 gap-4">
+		<div class="page-grid">
 			<NumberInput label="Anzahl Frauen" bind:value={frauen} min={0} placeholder="0" />
 			<NumberInput label="Anzahl Männer" bind:value={maenner} min={0} placeholder="0" />
 		</div>
@@ -69,50 +69,160 @@
 	</div>
 
 	{#if result}
-		<div class="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
-			<p class="text-center text-sm font-medium text-gray-500">Note</p>
-			<p class="mt-1 text-center text-5xl font-bold {noteColor(result.note)}">
+		<div class="result-card">
+			<p class="result-label">Note</p>
+			<p class="result-note {noteColorClass(result.note)}">
 				{result.note.toFixed(2)}
 			</p>
 
-			<div class="mt-5 space-y-2 text-sm text-gray-600">
-				<div class="flex justify-between">
+			<div class="result-details">
+				<div class="result-row">
 					<span>Anzahl Läufer</span>
-					<span class="font-medium text-gray-900">{result.anzahlLaeufer}</span>
+					<span class="result-value">{result.anzahlLaeufer}</span>
 				</div>
-				<div class="flex justify-between">
+				<div class="result-row">
 					<span>Korrigierte Zeit</span>
-					<span class="font-medium text-gray-900">{result.korrigierteZeit.toFixed(2)} Sek.</span>
+					<span class="result-value">{result.korrigierteZeit.toFixed(2)} Sek.</span>
 				</div>
-				<div class="flex justify-between">
+				<div class="result-row">
 					<span>Durchschnittszeit</span>
-					<span class="font-medium text-gray-900">{result.durchschnittszeit.toFixed(2)} Sek.</span>
+					<span class="result-value">{result.durchschnittszeit.toFixed(2)} Sek.</span>
 				</div>
 				{#if frauen > 0 && maenner > 0}
-					<div class="flex justify-between">
+					<div class="result-row">
 						<span>Gruppe</span>
-						<span class="font-medium text-gray-900">Mixed</span>
+						<span class="result-value">Mixed</span>
 					</div>
 				{:else if frauen > 0}
-					<div class="flex justify-between">
+					<div class="result-row">
 						<span>Gruppe</span>
-						<span class="font-medium text-gray-900">Turnerinnen</span>
+						<span class="result-value">Turnerinnen</span>
 					</div>
 				{:else}
-					<div class="flex justify-between">
+					<div class="result-row">
 						<span>Gruppe</span>
-						<span class="font-medium text-gray-900">Turner</span>
+						<span class="result-value">Turner</span>
 					</div>
 				{/if}
 			</div>
 		</div>
 	{/if}
 
-	<div class="mt-6">
+	<div class="page-actions">
 		<Button onclick={reset} variant="secondary">Zurücksetzen</Button>
 	</div>
 
-	<footer class="mt-auto pt-8 text-center text-xs text-gray-400">
+	<footer class="page-footer">
 		Wertungstabelle Leichtathletik 2020 &mdash; STV/FSG
 	</footer>
 </div>
+
+<style>
+	.page {
+		max-width: 32rem;
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		min-height: 100dvh;
+		padding-inline: 1rem;
+		padding-block: 2rem;
+	}
+
+	.page-header {
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+
+	.page-title {
+		font-size: var(--text-lg);
+		font-weight: 700;
+		color: var(--color-neutral-900);
+	}
+
+	.page-subtitle {
+		margin-top: 0.25rem;
+		font-size: var(--text-sm);
+		color: var(--color-neutral-500);
+	}
+
+	.page-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.page-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	.result-card {
+		margin-top: 2rem;
+		border-radius: 0.75rem;
+		border: 1px solid var(--color-neutral-200);
+		background-color: var(--color-neutral-50);
+		padding: 1.5rem;
+	}
+
+	.result-label {
+		text-align: center;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-neutral-500);
+	}
+
+	.result-note {
+		margin-top: 0.25rem;
+		text-align: center;
+		font-size: var(--text-xl);
+		font-weight: 700;
+	}
+
+	.note-green {
+		color: var(--color-success-600);
+	}
+
+	.note-yellow {
+		color: var(--color-warning-600);
+	}
+
+	.note-orange {
+		color: var(--color-caution-500);
+	}
+
+	.note-red {
+		color: var(--color-danger-500);
+	}
+
+	.result-details {
+		margin-top: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		font-size: var(--text-sm);
+		color: var(--color-neutral-600);
+	}
+
+	.result-row {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.result-value {
+		font-weight: 500;
+		color: var(--color-neutral-900);
+	}
+
+	.page-actions {
+		margin-top: 1.5rem;
+	}
+
+	.page-footer {
+		margin-top: auto;
+		padding-top: 2rem;
+		text-align: center;
+		font-size: var(--text-xs);
+		color: var(--color-neutral-400);
+	}
+</style>

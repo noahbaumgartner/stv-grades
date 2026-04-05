@@ -8,15 +8,46 @@
 	}: { label: string; options: Option[]; value: string } = $props();
 </script>
 
-<div class="flex flex-col gap-1.5">
-	<label for="select-{label}" class="text-xs font-medium text-gray-700">{label}</label>
+<div class="select">
+	<label for="select-{label}" class="select-label">{label}</label>
 	<select
 		id="select-{label}"
 		bind:value
-		class="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-900 outline-none transition focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+		class="select-input"
 	>
 		{#each options as opt}
 			<option value={opt.value}>{opt.label}</option>
 		{/each}
 	</select>
 </div>
+
+<style>
+	.select {
+		display: flex;
+		flex-direction: column;
+		gap: 0.375rem;
+	}
+
+	.select-label {
+		font-size: var(--text-xs);
+		font-weight: 500;
+		color: var(--color-neutral-700);
+	}
+
+	.select-input {
+		height: 2.5rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--color-neutral-300);
+		background-color: white;
+		padding-inline: 0.75rem;
+		font-size: var(--text-sm);
+		color: var(--color-neutral-900);
+		outline: none;
+		transition: border-color 0.15s, box-shadow 0.15s;
+	}
+
+	.select-input:focus {
+		border-color: var(--color-neutral-900);
+		box-shadow: 0 0 0 1px var(--color-neutral-900);
+	}
+</style>
