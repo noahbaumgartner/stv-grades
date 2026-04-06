@@ -52,6 +52,12 @@
 		transition: border-color 0.15s, box-shadow 0.15s;
 	}
 
+	@media (max-width: 768px) {
+		.select-input {
+			font-size: 16px;
+		}
+	}
+
 	.select-input:focus {
 		border-color: var(--color-neutral-900);
 		box-shadow: 0 0 0 1px var(--color-neutral-900);

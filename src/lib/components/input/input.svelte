@@ -59,6 +59,12 @@
 		transition: border-color 0.15s, box-shadow 0.15s;
 	}
 
+	@media (max-width: 768px) {
+		.input-field {
+			font-size: 16px;
+		}
+	}
+
 	.input-field[type='number'] {
 		appearance: textfield;
 	}
