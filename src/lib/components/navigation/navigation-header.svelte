@@ -20,11 +20,16 @@
 		font-size: var(--text-xs);
 		font-weight: 600;
 		color: var(--color-neutral-800);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		flex-shrink: 0;
 	}
 
 	.nav-divider {
 		border: none;
 		border-top: 1px solid var(--color-neutral-200);
 		margin: 0.5rem 0.75rem;
+		flex-shrink: 0;
 	}
 </style>

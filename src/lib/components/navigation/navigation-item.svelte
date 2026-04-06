@@ -29,6 +29,7 @@
 	.nav-item {
 		display: flex;
 		align-items: center;
+		flex-shrink: 0;
 		gap: 0.5rem;
 		padding: 0.5rem 0.5rem;
 		border-radius: var(--radius-sm);
@@ -67,6 +68,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		color: var(--color-neutral-800);
+		text-wrap: nowrap;
 	}
 
 	@media (max-width: 768px) {
