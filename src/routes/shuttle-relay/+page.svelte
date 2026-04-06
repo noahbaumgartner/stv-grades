@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Select } from '$lib/components/select';
 	import { Input } from '$lib/components/input';
+	import { PageHeader } from '$lib/components/page-header';
 
 	import { berechneNote, type GradingResult, type Untergrund } from '$lib/grading';
 
@@ -34,12 +35,9 @@ const untergrundOptions = [
 	<title>STV Pendelstafetten-Rechner</title>
 </svelte:head>
 
-<div class="page">
-	<header class="page-header">
-		<h1 class="page-title">Pendelstafetten-Rechner</h1>
-		<p class="page-subtitle">80m Pendelstafette</p>
-	</header>
+<PageHeader title="Pendelstafetten-Rechner" />
 
+<div class="page">
 	<div class="page-form">
 		<Select label="Untergrund" options={untergrundOptions} bind:value={untergrund} />
 
@@ -108,26 +106,8 @@ const untergrundOptions = [
 		margin-inline: auto;
 		display: flex;
 		flex-direction: column;
-		min-height: 100dvh;
 		padding-inline: 1rem;
 		padding-block: 2rem;
-	}
-
-	.page-header {
-		margin-bottom: 2rem;
-		text-align: center;
-	}
-
-	.page-title {
-		font-size: var(--text-lg);
-		font-weight: 700;
-		color: var(--color-neutral-900);
-	}
-
-	.page-subtitle {
-		margin-top: 0.25rem;
-		font-size: var(--text-sm);
-		color: var(--color-neutral-500);
 	}
 
 	.page-form {

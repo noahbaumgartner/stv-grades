@@ -101,7 +101,7 @@
 	}
 
 	.button-ghost:hover {
-		background-color: var(--color-neutral-200);
+		background-color: #F0EEE6;
 		color: var(--color-neutral-700);
 	}
 </style>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Input } from '$lib/components/input';
 	import { Select } from '$lib/components/select';
+	import { PageHeader } from '$lib/components/page-header';
 
 	let geschlecht = $state('maenner');
 	let weite = $state(0);
@@ -15,12 +16,9 @@
 	<title>STV Speerwerfen-Rechner</title>
 </svelte:head>
 
-<div class="page">
-	<header class="page-header">
-		<h1 class="page-title">Speerwerfen-Rechner</h1>
-		<p class="page-subtitle">Speerwerfen</p>
-	</header>
+<PageHeader title="Speerwerfen-Rechner" />
 
+<div class="page">
 	<div class="page-form">
 		<Select label="Geschlecht" options={geschlechtOptions} bind:value={geschlecht} />
 
@@ -46,26 +44,8 @@
 		margin-inline: auto;
 		display: flex;
 		flex-direction: column;
-		min-height: 100dvh;
 		padding-inline: 1rem;
 		padding-block: 2rem;
-	}
-
-	.page-header {
-		margin-bottom: 2rem;
-		text-align: center;
-	}
-
-	.page-title {
-		font-size: var(--text-lg);
-		font-weight: 700;
-		color: var(--color-neutral-900);
-	}
-
-	.page-subtitle {
-		margin-top: 0.25rem;
-		font-size: var(--text-sm);
-		color: var(--color-neutral-500);
 	}
 
 	.page-form {

@@ -6,17 +6,19 @@
 		label,
 		href,
 		active = false,
-		collapsed = false
+		collapsed = false,
+		onclick
 	}: {
 		icon: any;
 		label: string;
 		href: string;
 		active?: boolean;
 		collapsed?: boolean;
+		onclick?: () => void;
 	} = $props();
 </script>
 
-<a {href} class="nav-item" class:active title={collapsed ? label : undefined}>
+<a {href} class="nav-item" class:active title={collapsed ? label : undefined} {onclick}>
 	<span class="nav-item-icon">
 		<Icon {icon} size={16} />
 	</span>
@@ -37,13 +39,11 @@
 	}
 
 	.nav-item:hover {
-		background-color: var(--color-neutral-100);
-		color: var(--color-neutral-700);
+		background-color: #F0EEE6;
 	}
 
 	.nav-item.active {
-		background-color: var(--color-neutral-200);
-		color: var(--color-neutral-800);
+		background-color: #F0EEE6;
 	}
 
 	.nav-item-icon {
@@ -51,7 +51,7 @@
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		color: var(--color-neutral-600);
+		color: var(--color-neutral-800);
 		transition: transform 0.2s ease;
 	}
 
@@ -66,6 +66,6 @@
 	.nav-item-label {
 		overflow: hidden;
 		text-overflow: ellipsis;
-		color: var(--color-neutral-700);
+		color: var(--color-neutral-800);
 	}
 </style>
