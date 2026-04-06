@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { Icon } from '$lib/components/icon';
-	import { Tooltip } from '$lib/components/tooltip';
 	import { PanelLeftClose, PanelLeftOpen, X } from 'lucide-svelte';
 
 	let {
@@ -26,16 +25,14 @@
 	</div>
 	<div class="nav-footer">
 	{#if collapsed}
-		<Tooltip text="Einblenden" position="right">
-			<button
-				class="nav-item nav-collapse"
-				onclick={() => (collapsed = !collapsed)}
-			>
-				<span class="nav-item-icon">
-					<Icon icon={PanelLeftOpen} size={16} />
-				</span>
-			</button>
-		</Tooltip>
+		<button
+			class="nav-item nav-collapse"
+			onclick={() => (collapsed = !collapsed)}
+		>
+			<span class="nav-item-icon">
+				<Icon icon={PanelLeftOpen} size={16} />
+			</span>
+		</button>
 	{:else}
 		<button
 			class="nav-item nav-collapse"
