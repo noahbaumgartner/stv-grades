@@ -36,6 +36,12 @@
 
 <div class="app">
 	<Navigation bind:collapsed bind:mobileOpen={nav.mobileOpen}>
+		<a href="/" class="nav-title" class:collapsed>
+			<span class="nav-title-emoji">🏃🏼‍♂️</span>
+			{#if !collapsed}
+				<span class="nav-title-text">STV Notenrechner</span>
+			{/if}
+		</a>
 		<NavigationItem
 			icon={House}
 			label="Start"
@@ -74,5 +80,34 @@
 		flex: 1;
 		min-width: 0;
 		overflow-y: auto;
+	}
+
+	.nav-title {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.625rem 0.5rem;
+		margin-bottom: 0.75rem;
+		text-decoration: none;
+		white-space: nowrap;
+		overflow: hidden;
+		flex-shrink: 0;
+	}
+
+	.nav-title-emoji {
+		font-size: 1.25rem;
+		flex-shrink: 0;
+		line-height: 1;
+	}
+
+	.nav-title-text {
+		font-size: var(--text-base);
+		font-weight: 700;
+		color: var(--color-neutral-800);
+	}
+
+	.nav-title.collapsed {
+		justify-content: center;
+		padding: 0.625rem 0;
 	}
 </style>
