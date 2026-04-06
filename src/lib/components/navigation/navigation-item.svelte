@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Icon } from '$lib/components/icon';
+	import { Tooltip } from '$lib/components/tooltip';
 
 	let {
 		icon,
@@ -18,12 +19,22 @@
 	} = $props();
 </script>
 
-<a {href} class="nav-item" class:active title={collapsed ? label : undefined} {onclick}>
-	<span class="nav-item-icon">
-		<Icon {icon} size={16} />
-	</span>
-	<span class="nav-item-label">{label}</span>
-</a>
+{#if collapsed}
+	<Tooltip text={label} position="right">
+		<a {href} class="nav-item nav-item-collapsed" class:active {onclick}>
+			<span class="nav-item-icon">
+				<Icon {icon} size={16} />
+			</span>
+		</a>
+	</Tooltip>
+{:else}
+	<a {href} class="nav-item" class:active {onclick}>
+		<span class="nav-item-icon">
+			<Icon {icon} size={16} />
+		</span>
+		<span class="nav-item-label">{label}</span>
+	</a>
+{/if}
 
 <style>
 	.nav-item {
@@ -37,6 +48,7 @@
 		font-size: var(--text-sm);
 		transition: background-color 0.15s, color 0.15s;
 		white-space: nowrap;
+		overflow: hidden;
 	}
 
 	.nav-item:hover {
