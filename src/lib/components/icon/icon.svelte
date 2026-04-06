@@ -1,14 +1,13 @@
 <script lang="ts">
-	import type { Component } from 'svelte';
 	import type { IconProps } from 'lucide-svelte';
 
 	let {
 		icon,
 		size = 20,
-		strokeWidth = 1.75,
+		strokeWidth = 1.5,
 		...rest
 	}: IconProps & {
-		icon: Component<IconProps>;
+		icon: any;
 	} = $props();
 </script>
 
