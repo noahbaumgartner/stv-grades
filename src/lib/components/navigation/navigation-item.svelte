@@ -68,4 +68,18 @@
 		text-overflow: ellipsis;
 		color: var(--color-neutral-800);
 	}
+
+	@media (max-width: 768px) {
+		.nav-item:hover {
+			background-color: transparent;
+		}
+
+		.nav-item:hover .nav-item-icon {
+			transform: none;
+		}
+
+		.nav-item:active .nav-item-icon {
+			transform: none;
+		}
+	}
 </style>

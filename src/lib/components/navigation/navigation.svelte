@@ -23,6 +23,7 @@
 	<div class="nav-content">
 		{@render children()}
 	</div>
+	<div class="nav-footer">
 	<button
 		class="nav-item nav-collapse"
 		onclick={() => (collapsed = !collapsed)}
@@ -43,6 +44,7 @@
 		</span>
 		<span class="nav-item-label">Schliessen</span>
 	</button>
+	</div>
 </nav>
 
 <style>
@@ -53,6 +55,9 @@
 		background-color: #FAF9F6;
 		border-right: 1px solid var(--color-neutral-200);
 		padding: 0.75rem 0.5rem;
+		max-height: 100dvh;
+		position: sticky;
+		top: 0;
 		transition: width 0.2s ease;
 		flex-shrink: 0;
 		overflow: hidden;
@@ -67,11 +72,18 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
+		overflow-y: auto;
+		min-height: 0;
+	}
+
+	.nav-footer {
+		padding-top: 0.5rem;
 	}
 
 	.nav-item {
 		display: flex;
 		align-items: center;
+		width: 100%;
 		gap: 0.5rem;
 		padding: 0.5rem 0.5rem;
 		border: none;
@@ -153,6 +165,18 @@
 
 		.nav-close-mobile {
 			display: flex;
+		}
+
+		.nav-item:hover {
+			background-color: transparent;
+		}
+
+		.nav-item:hover .nav-item-icon {
+			transform: none;
+		}
+
+		.nav-item:active .nav-item-icon {
+			transform: none;
 		}
 
 		.nav-overlay {
