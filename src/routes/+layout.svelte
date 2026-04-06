@@ -17,18 +17,18 @@
 
 	// Map slug to icon
 	const iconMap: Record<string, any> = {
-		'80m-ps': Repeat,
-		'40m-ps-stab': Repeat,
+		'80m-relay': Repeat,
+		'40m-relay-baton': Repeat,
 		'80m': Timer,
 		'400m': Timer,
 		'800m': Timer,
 		'1000m': Timer,
-		'hochsprung': ArrowUp,
-		'weitsprung': MoveRight,
-		'kugelstossen': Circle,
-		'schleuderball': RotateCcw,
-		'speer': Crosshair,
-		'weitwurf': Target
+		'high-jump': ArrowUp,
+		'long-jump': MoveRight,
+		'shot-put': Circle,
+		'hammer-throw': RotateCcw,
+		'javelin': Crosshair,
+		'ball-throw': Target
 	};
 </script>
 

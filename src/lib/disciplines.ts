@@ -49,7 +49,7 @@ const SURFACES_NONE: SurfaceOption[] = [{ value: 'default', label: 'Standard' }]
 const disciplines: DisciplineConfig[] = [
 	// ==================== Staffeln ====================
 	{
-		slug: '80m-ps',
+		slug: '80m-relay',
 		name: '80m Pendelstafette',
 		category: 'Staffeln',
 		type: 'relay',
@@ -68,7 +68,7 @@ const disciplines: DisciplineConfig[] = [
 		errorPenalty: 2
 	},
 	{
-		slug: '40m-ps-stab',
+		slug: '40m-relay-baton',
 		name: '40m PS Stab',
 		category: 'Staffeln',
 		type: 'relay',
@@ -163,7 +163,7 @@ const disciplines: DisciplineConfig[] = [
 
 	// ==================== Sprung ====================
 	{
-		slug: 'hochsprung',
+		slug: 'high-jump',
 		name: 'Hochsprung',
 		category: 'Sprung',
 		type: 'distance',
@@ -181,7 +181,7 @@ const disciplines: DisciplineConfig[] = [
 		}
 	},
 	{
-		slug: 'weitsprung',
+		slug: 'long-jump',
 		name: 'Weitsprung',
 		category: 'Sprung',
 		type: 'distance',
@@ -201,7 +201,7 @@ const disciplines: DisciplineConfig[] = [
 
 	// ==================== Wurf / Stoss ====================
 	{
-		slug: 'kugelstossen',
+		slug: 'shot-put',
 		name: 'Kugelstossen',
 		category: 'Wurf / Stoss',
 		type: 'distance',
@@ -219,7 +219,7 @@ const disciplines: DisciplineConfig[] = [
 		}
 	},
 	{
-		slug: 'schleuderball',
+		slug: 'hammer-throw',
 		name: 'Schleuderball',
 		category: 'Wurf / Stoss',
 		type: 'distance',
@@ -237,7 +237,7 @@ const disciplines: DisciplineConfig[] = [
 		}
 	},
 	{
-		slug: 'speer',
+		slug: 'javelin',
 		name: 'Speer',
 		category: 'Wurf / Stoss',
 		type: 'distance',
@@ -255,7 +255,7 @@ const disciplines: DisciplineConfig[] = [
 		}
 	},
 	{
-		slug: 'weitwurf',
+		slug: 'ball-throw',
 		name: 'Weitwurf',
 		category: 'Wurf / Stoss',
 		type: 'distance',
