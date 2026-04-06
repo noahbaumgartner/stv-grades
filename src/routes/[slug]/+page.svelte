@@ -87,7 +87,7 @@
 </script>
 
 <svelte:head>
-	<title>STV {discipline?.name ?? 'Rechner'}</title>
+	<title>STV Notenrechner | {discipline?.name ?? 'Rechner'}</title>
 </svelte:head>
 
 {#if discipline}

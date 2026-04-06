@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>STV Notenrechner</title>
+	<title>STV Notenrechner | Start</title>
 </svelte:head>
 
 <PageHeader title="STV Notenrechner" />
