@@ -1,78 +1,114 @@
-export type Untergrund = 'kunststoff' | 'rasen' | 'wiese';
+import type { DisciplineConfig } from './disciplines';
 
-// 80m Pendelstafette - Basen pro Geschlecht und Untergrund
-const BASE_FRAUEN: Record<Untergrund, number> = {
-	kunststoff: 18.6,
-	rasen: 18.9,
-	wiese: 19.2
-};
+const GRADE_MAX = 10;
+const GRADE_MIN = 3;
 
-const BASE_MAENNER: Record<Untergrund, number> = {
-	kunststoff: 14.2,
-	rasen: 14.5,
-	wiese: 14.8
-};
+// --- Relay grading (team with women + men) ---
 
-// Divisoren sind geschlechtsabhängig bei 80m PS
-const DIVISOR_FRAUEN = 0.8;
-const DIVISOR_MAENNER = 0.5;
-
-const FEHLER_ZUSCHLAG = 2; // Sekunden pro Wechselfehler
-const NOTE_MAX = 10;
-const NOTE_MIN = 3;
-
-export interface GradingInput {
-	untergrund: Untergrund;
-	frauen: number;
-	maenner: number;
-	zeitTotal: number;
-	fehler: number;
+export interface RelayInput {
+	discipline: DisciplineConfig;
+	surface: string;
+	women: number;
+	men: number;
+	totalTime: number;
+	errors: number;
 }
 
-export interface GradingResult {
-	note: number;
-	korrigierteZeit: number;
-	durchschnittszeit: number;
-	anzahlLaeufer: number;
+export interface RelayResult {
+	grade: number;
+	correctedTime: number;
+	averageTime: number;
+	runnerCount: number;
+	group: 'Mixed' | 'Turnerinnen' | 'Turner';
 }
 
-export function berechneNote(input: GradingInput): GradingResult | null {
-	const { untergrund, frauen, maenner, zeitTotal, fehler } = input;
-	const anzahlLaeufer = frauen + maenner;
+export function calculateRelay(input: RelayInput): RelayResult | null {
+	const { discipline, surface, women, men, totalTime, errors } = input;
+	const runnerCount = women + men;
 
-	if (anzahlLaeufer < 1 || zeitTotal <= 0) {
-		return null;
-	}
+	if (runnerCount < 1 || totalTime <= 0) return null;
 
-	const korrigierteZeit = zeitTotal + fehler * FEHLER_ZUSCHLAG;
-	const durchschnittszeit = korrigierteZeit / anzahlLaeufer;
+	const penalty = discipline.errorPenalty ?? 0;
+	const correctedTime = totalTime + errors * penalty;
+	const averageTime = correctedTime / runnerCount;
 
 	let base: number;
 	let divisor: number;
 
-	if (frauen > 0 && maenner > 0) {
-		// Mixed: gewichteter Durchschnitt der Basen und Divisoren
-		base =
-			(BASE_FRAUEN[untergrund] * frauen + BASE_MAENNER[untergrund] * maenner) / anzahlLaeufer;
-		divisor = (DIVISOR_FRAUEN * frauen + DIVISOR_MAENNER * maenner) / anzahlLaeufer;
-	} else if (frauen > 0) {
-		base = BASE_FRAUEN[untergrund];
-		divisor = DIVISOR_FRAUEN;
+	const w = discipline.women;
+	const m = discipline.men;
+
+	if (women > 0 && men > 0) {
+		base = (w.base[surface] * women + m.base[surface] * men) / runnerCount;
+		divisor = (w.divisor[surface] * women + m.divisor[surface] * men) / runnerCount;
+	} else if (women > 0) {
+		base = w.base[surface];
+		divisor = w.divisor[surface];
 	} else {
-		base = BASE_MAENNER[untergrund];
-		divisor = DIVISOR_MAENNER;
+		base = m.base[surface];
+		divisor = m.divisor[surface];
 	}
 
-	let note = (base - durchschnittszeit) / divisor;
-	note = Math.round(note * 100) / 100; // auf 2 Dezimalstellen runden
+	let grade = (base - averageTime) / divisor;
+	grade = clamp(grade);
 
-	if (note > NOTE_MAX) note = NOTE_MAX;
-	if (note < NOTE_MIN) note = NOTE_MIN;
+	const group = women > 0 && men > 0 ? 'Mixed' : women > 0 ? 'Turnerinnen' : 'Turner';
 
 	return {
-		note,
-		korrigierteZeit,
-		durchschnittszeit: Math.round(durchschnittszeit * 100) / 100,
-		anzahlLaeufer
+		grade,
+		correctedTime,
+		averageTime: round2(averageTime),
+		runnerCount,
+		group
 	};
+}
+
+// --- Individual grading (time or distance) ---
+
+export interface IndividualInput {
+	discipline: DisciplineConfig;
+	surface: string;
+	gender: 'women' | 'men';
+	value: number;
+}
+
+export interface IndividualResult {
+	grade: number;
+}
+
+export function calculateIndividual(input: IndividualInput): IndividualResult | null {
+	const { discipline, surface, gender, value } = input;
+
+	if (value <= 0) return null;
+
+	const params = gender === 'women' ? discipline.women : discipline.men;
+	const base = params.base[surface];
+	const divisor = params.divisor[surface];
+
+	let grade: number;
+
+	if (discipline.type === 'time') {
+		// Lower time = better: (base - d) / divisor
+		grade = (base - value) / divisor;
+	} else {
+		// Higher distance = better: (d - base) / divisor
+		grade = (value - base) / divisor;
+	}
+
+	grade = clamp(grade);
+
+	return { grade };
+}
+
+// --- Helpers ---
+
+function clamp(grade: number): number {
+	grade = Math.round(grade * 100) / 100;
+	if (grade > GRADE_MAX) return GRADE_MAX;
+	if (grade < GRADE_MIN) return GRADE_MIN;
+	return grade;
+}
+
+function round2(n: number): number {
+	return Math.round(n * 100) / 100;
 }

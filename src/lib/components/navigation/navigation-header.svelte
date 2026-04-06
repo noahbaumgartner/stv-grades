@@ -16,12 +16,10 @@
 
 <style>
 	.nav-header {
-		padding: 0.5rem 0.75rem 0.25rem;
+		padding: 0.75rem 0.5rem 0.25rem;
 		font-size: var(--text-xs);
 		font-weight: 600;
-		color: var(--color-neutral-400);
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
+		color: var(--color-neutral-800);
 	}
 
 	.nav-divider {
