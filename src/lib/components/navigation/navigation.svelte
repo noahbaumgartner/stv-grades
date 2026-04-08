@@ -81,8 +81,9 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: 0.125rem;
 		overflow-y: auto;
+		scrollbar-width: none;
 		min-height: 0;
 	}
 
