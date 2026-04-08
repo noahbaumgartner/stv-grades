@@ -11,7 +11,7 @@
 {#if !collapsed}
 	<p class="nav-header">{label}</p>
 {:else}
-	<hr class="nav-divider" />
+	<div class="nav-spacer"></div>
 {/if}
 
 <style>
@@ -26,10 +26,8 @@
 		flex-shrink: 0;
 	}
 
-	.nav-divider {
-		border: none;
-		border-top: 1px solid var(--color-neutral-200);
-		margin: 0.5rem 0.75rem;
+	.nav-spacer {
+		height: 0.75rem;
 		flex-shrink: 0;
 	}
 </style>

@@ -135,6 +135,14 @@
 		color: var(--color-neutral-700);
 	}
 
+	.nav-collapse {
+		background-color: #F0EEE6;
+	}
+
+	.nav-collapse:hover {
+		background-color: #E6E4DA;
+	}
+
 	.nav-close-mobile {
 		display: none;
 	}
