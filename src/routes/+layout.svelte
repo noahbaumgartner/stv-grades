@@ -86,7 +86,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 0.625rem 0.5rem;
+		padding: 0.25rem 0.5rem;
 		margin-bottom: 0.75rem;
 		text-decoration: none;
 		white-space: nowrap;
@@ -101,6 +101,7 @@
 	}
 
 	.nav-title-text {
+		font-family: 'Literata', serif;
 		font-size: var(--text-base);
 		font-weight: 700;
 		color: var(--color-neutral-800);

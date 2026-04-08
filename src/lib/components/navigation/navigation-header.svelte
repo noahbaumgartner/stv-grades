@@ -16,9 +16,10 @@
 
 <style>
 	.nav-header {
+		font-family: 'Google Sans', sans-serif;
 		padding: 0.75rem 0.5rem 0.25rem;
 		font-size: var(--text-xs);
-		font-weight: 600;
+		font-weight: 700;
 		color: var(--color-neutral-800);
 		white-space: nowrap;
 		overflow: hidden;

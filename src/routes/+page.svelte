@@ -6,7 +6,7 @@
 	<title>STV Notenrechner | Start</title>
 </svelte:head>
 
-<PageHeader title="STV Notenrechner" />
+<PageHeader title="Start" />
 
 <div class="page">
 	<div class="hero">

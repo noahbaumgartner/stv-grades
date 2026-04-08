@@ -29,8 +29,9 @@
 	}
 
 	.page-header-title {
+		font-family: 'Literata', serif;
 		font-size: var(--text-base);
-		font-weight: 600;
+		font-weight: 700;
 		color: var(--color-neutral-800);
 	}
 
