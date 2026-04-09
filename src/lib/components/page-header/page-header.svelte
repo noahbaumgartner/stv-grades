@@ -24,7 +24,8 @@
 		display: flex;
 		align-items: center;
 		gap: 0.75rem;
-		padding: 1rem 1.5rem;
+		height: var(--header-height);
+		padding: 0 1.5rem;
 		border-bottom: 1px solid var(--color-neutral-200);
 	}
 

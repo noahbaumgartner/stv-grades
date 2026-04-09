@@ -88,7 +88,8 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 1rem;
+		height: var(--header-height);
+		padding: 0 1rem;
 		margin-bottom: 0.5rem;
 		border-bottom: 1px solid var(--color-neutral-200);
 		text-decoration: none;
@@ -102,7 +103,6 @@
 	.nav-title-emoji {
 		font-size: 1.25rem;
 		flex-shrink: 0;
-		line-height: 1;
 	}
 
 	.nav-title-text {
