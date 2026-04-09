@@ -36,12 +36,14 @@
 
 <div class="app">
 	<Navigation bind:collapsed bind:mobileOpen={nav.mobileOpen}>
-		<a href="/" class="nav-title" class:collapsed>
-			<span class="nav-title-emoji">🏃🏼‍♂️</span>
-			{#if !collapsed}
-				<span class="nav-title-text">STV Notenrechner</span>
-			{/if}
-		</a>
+		{#snippet header()}
+			<a href="/" class="nav-title" class:collapsed>
+				<span class="nav-title-emoji">🏃🏼‍♂️</span>
+				{#if !collapsed}
+					<span class="nav-title-text">STV Notenrechner</span>
+				{/if}
+			</a>
+		{/snippet}
 		<NavigationItem
 			icon={House}
 			label="Start"
@@ -86,12 +88,15 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 0.25rem 0.5rem;
-		margin-bottom: 0.75rem;
+		padding: 1rem;
+		margin-bottom: 0.5rem;
+		border-bottom: 1px solid var(--color-neutral-200);
 		text-decoration: none;
 		white-space: nowrap;
 		overflow: hidden;
 		flex-shrink: 0;
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.nav-title-emoji {
@@ -109,6 +114,5 @@
 
 	.nav-title.collapsed {
 		justify-content: center;
-		padding: 0.625rem 0;
 	}
 </style>

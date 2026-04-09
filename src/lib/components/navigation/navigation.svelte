@@ -6,10 +6,12 @@
 	let {
 		collapsed = $bindable(false),
 		mobileOpen = $bindable(false),
+		header,
 		children
 	}: {
 		collapsed?: boolean;
 		mobileOpen?: boolean;
+		header?: Snippet;
 		children: Snippet;
 	} = $props();
 </script>
@@ -20,6 +22,9 @@
 {/if}
 
 <nav class="nav" class:collapsed class:mobile-open={mobileOpen}>
+	{#if header}
+		{@render header()}
+	{/if}
 	<div class="nav-content">
 		{@render children()}
 	</div>
@@ -64,7 +69,7 @@
 		width: 14rem;
 		background-color: #FAF9F6;
 		border-right: 1px solid var(--color-neutral-200);
-		padding: 0.75rem 0.5rem;
+		padding: 0 0 0.75rem;
 		max-height: 100dvh;
 		position: sticky;
 		top: 0;
@@ -85,10 +90,11 @@
 		overflow-y: auto;
 		scrollbar-width: none;
 		min-height: 0;
+		padding: 0 0.5rem;
 	}
 
 	.nav-footer {
-		padding-top: 0.5rem;
+		padding: 0.5rem 0.5rem 0;
 	}
 
 	.nav-item {
